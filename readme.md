@@ -1,6 +1,6 @@
-#Team Black Russian
+# Team Black Russian
 
-##rawgit link: https://rawgit.com/flashd2n/black-russian/master/app/cards.html
+## rawgit link: https://rawgit.com/flashd2n/black-russian/master/app/cards.html
 
 ##   JavaScript DOM & UI: Teamwork Assignment
 
@@ -30,10 +30,10 @@ Please define and implement the following assets in your project:
 -   Use the **HTML5 canvas**
     - [x]  Or a canvas framework like `KineticJS`, `paper.js` or other
 -   Use SVG
-    -  [] Or a SVG framework like `Raphael JS` or other
+    -  [ ] Or a SVG framework like `Raphael JS` or other
 -   Create animations
-    -  [] Either for the canvas, SVG or both
--  [] The application must work in the latest versions of the browsers: 
+    -  [ ] Either for the canvas, SVG or both
+-  [ ] The application must work in the latest versions of the browsers: 
     -   Google Chrome
     -   Mozilla Firefox
     -   Microsoft Edge/Internet Explorer 11
@@ -44,11 +44,11 @@ Please define and implement the following assets in your project:
 
 Follow the best practices for producing high-quality code: 
 
-- []  **Correct naming**
--  [] **Data encapsulation**
-    - []  Use modules
--  [] Use ES 2015 syntax where possible
--  [] **Strong cohesion** and **loose coupling**
+- [ ]  **Correct naming**
+-  [ ] **Data encapsulation**
+    - [ ]  Use modules
+-  [ ] Use ES 2015 syntax where possible
+-  [ ] **Strong cohesion** and **loose coupling**
 - [x]  Use **GIT** as a source control system
     -   Host it on <a href="https://github.com" title="https://github.com" target="_blank">https://github.com</a>
 
@@ -56,21 +56,21 @@ Follow the best practices for producing high-quality code:
 
 If you have a chance, time and a suitable situation, you might add some of the following to your project:
 
-- []  Use DOM manipulations like native DOM API and/or jQuery
--  [] Unit and integration testing
--  [] Backward compatibility (make the application usable on browsers like IE8, IE7 and IE6)
+- [ ]  Use DOM manipulations like native DOM API and/or jQuery
+-  [ ] Unit and integration testing
+-  [ ] Backward compatibility (make the application usable on browsers like IE8, IE7 and IE6)
 
 ##  Non-required Work
 -   Completely finished project is not obligatory required. It will not be a big problem if your project is not completely finished or is not working greatly
     -   This team work project is for educational purpose
     -   Its main purpose it to experience using graphics, DOM manipulation and OOP in a real-world-like project and to get some experience in team working and team collaboration with a source control system.
-- []  Implementation of server-side logic with ASP.NET, PHP, Java or Node.js
+- [ ]  Implementation of server-side logic with ASP.NET, PHP, Java or Node.js
 
 ##  Deliverables
 
-- []  Upload a brief video (2-3 mins) of your application and upload it in [YouTube](https://youtube.com)
+- [ ]  Upload a brief video (2-3 mins) of your application and upload it in [YouTube](https://youtube.com)
     -   **Each project without an uploaded video in YouTube will be considered not done**
--  [] Upload your project in http://best.telerikacademy.com
+-  [ ] Upload your project in http://best.telerikacademy.com
     -   A brief description of your application
     -   Link the video in the description
     -   Mandatory refer the github repository of your application
