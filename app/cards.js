@@ -137,6 +137,17 @@ function createObjects(items) {
             currentCard = createCard('gray', i, rows);
 
             layer.add(currentCard);
+
+            currentCard.tween = new Konva.Tween({
+                node: currentCard,
+                scaleX: 1.2,
+                scaleY: 1.2,
+                x: currentCard.attrs.x - 10,
+                y: currentCard.attrs.y - 10,
+                easing: Konva.Easings.EaseIn,
+                duration: 0.3
+            });
+
         }
         layer.add(text);
         stage.add(layer);
@@ -144,6 +155,17 @@ function createObjects(items) {
         startTimer = new Date();
 
 
+        layer.on('mouseover', function (event) {
+
+            event.target.tween.play();
+
+        });
+
+        layer.on('mouseout', function (event) {
+
+            event.target.tween.reverse();
+
+        });
 
 
         layer.on("click tap", function (evt) {
