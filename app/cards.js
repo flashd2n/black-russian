@@ -1,3 +1,4 @@
+"use strict";
 var stage = new Konva.Stage({
     container: 'canvas',
     width: 1600,
@@ -15,10 +16,18 @@ var text = new Konva.Text({
 });
 
 var colors = ["pink", "yellow", "green", "orange", "blue", "red"];
-
+var colorsWhichAreSelected = [];
 function getRandomColor() {
     var availableColors = colors.length - 1;
-    return colors[Math.round(Math.random() * availableColors)];
+    var currentColor = colors[Math.round(Math.random() * availableColors)];
+    if(colorsWhichAreSelected.indexOf(currentColor) < 0){
+        colorsWhichAreSelected.push(currentColor);
+    }
+    else{
+        colors.splice(colors.indexOf(currentColor));
+    }
+    return currentColor;
+
 }
 
 
@@ -95,7 +104,7 @@ function createObjects(items) {
         names[i - 1] = new Konva.Rect({
             x: (120 * i) + 20,
             y: 30,
-            fill: "gray",
+            fill: 'gray',
             width: 100,
             height: 180,
             id: i
@@ -103,24 +112,35 @@ function createObjects(items) {
         layer.add(names[i - 1]);
         actualColors.push(currentColor);
     }
+
+
+
+ 
+
     layer.on("click tap", function (evt) {
-        console.log(evt.target.fill());
+       var shapes = stage.find('Rect');
+        
         // if card is flipped face-down
         if(evt.target.fill() === 'gray') {           
             evt.target.fill(actualColors[evt.target.id() - 1]);            
         }
-        //alert(evt.target.getId())
+      
         writeMessage('Selected card is ' + evt.target.fill() + " with ID " + evt.target.id());
-
+        
         storeCards(evt);
         if (isSecond()) {
-            // alert(cards[0].target.getId() + ' ' + cards[1].target.getId());
+            
             if (checkSameType(cards) && !checkIfFlipped(cards)) {
-                destroy(cards)
+                destroy(cards);
+            }
+            else{
+              shapes.each(function(shape){
+                  shape.fill('gray');
+              });
             }
             cards = [];
         }
-
+       
         //removeCards(evt.target);
 
     });
@@ -151,7 +171,7 @@ function createObjects(items) {
                 called = true;
             }
             return called;
-        }
+        };
     })();
 
 
