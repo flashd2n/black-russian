@@ -1,6 +1,7 @@
 # Team Black Russian
 
 ## rawgit link: https://rawgit.com/flashd2n/black-russian/master/app/cards.html
+### framework: https://konvajs.github.io/
 
 ##   JavaScript DOM & UI: Teamwork Assignment
 
@@ -30,10 +31,10 @@ Please define and implement the following assets in your project:
 -   Use the **HTML5 canvas**
     - [x]  Or a canvas framework like `KineticJS`, `paper.js` or other
 -   Use SVG
-    -  [ ] Or a SVG framework like `Raphael JS` or other
+    -  [x] Or a SVG framework like `Raphael JS` or other
 -   Create animations
     -  [ ] Either for the canvas, SVG or both
--  [ ] The application must work in the latest versions of the browsers: 
+-  [x] The application must work in the latest versions of the browsers: 
     -   Google Chrome
     -   Mozilla Firefox
     -   Microsoft Edge/Internet Explorer 11
