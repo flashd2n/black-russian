@@ -80,6 +80,8 @@ function generateRandomColorsArr(count) {
 
 function createObjects(items) {
     let cardColors = generateRandomColorsArr(items);
+
+    var actualColors = [];
   
     for (var i = 1; i <= items; i += 1) {
         let randomColorIndex = Math.floor(Math.random() * cardColors.length);
@@ -89,22 +91,29 @@ function createObjects(items) {
         console.log('ok')
         var names = [];
 
+        var someImg = document.createElement('img');
+        someImg.src = "card.jpg";
+
         names[i - 1] = "shape" + i;
         names[i - 1] = new Konva.Rect({
             x: (120 * i) + 20,
             y: 30,
-            fill: currentColor,
+            fill: "gray",
             width: 100,
             height: 180,
             id: i
         });
         layer.add(names[i - 1]);
+        actualColors.push(currentColor);
     }
     layer.on("click tap", function (evt) {
-
+        console.log(evt.target.fill());
+        // if card is flipped face-down
+        if(evt.target.fill() === 'gray') {           
+            evt.target.fill(actualColors[evt.target.id() - 1]);            
+        }
         //alert(evt.target.getId())
         writeMessage('Selected card is ' + evt.target.fill() + " with ID " + evt.target.id());
-
 
         storeCards(evt);
         if (isSecond()) {
@@ -126,15 +135,13 @@ function createObjects(items) {
         layer.draw();
     }
 
-    //function to check if current card is already flipped
-
     function checkIfFlipped(cards) {
         var firstCardColor = cards[0].target.id();
         var secondCardColor = cards[1].target.id();
 
         if (firstCardColor === secondCardColor) {
             return true;
-        }
+        }        
     }
 
     //switches every even click on a different card
