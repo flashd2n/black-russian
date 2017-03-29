@@ -16,14 +16,19 @@ var text = new Konva.Text({
 });
 
 var colors = ["pink", "yellow", "green", "orange", "blue", "red"];
+var actualColors = [];
+
+var startTimer;
+var endTimer;
+
 var colorsWhichAreSelected = [];
 function getRandomColor() {
     var availableColors = colors.length - 1;
     var currentColor = colors[Math.round(Math.random() * availableColors)];
-    if(colorsWhichAreSelected.indexOf(currentColor) < 0){
+    if (colorsWhichAreSelected.indexOf(currentColor) < 0) {
         colorsWhichAreSelected.push(currentColor);
     }
-    else{
+    else {
         colors.splice(colors.indexOf(currentColor));
     }
     return currentColor;
@@ -76,7 +81,7 @@ $(document).ready(function () {
 function generateRandomColorsArr(count) {
     let cardColors = [];
 
-    for(let i = 0; i < count / 2; i += 1) {
+    for (let i = 0; i < count / 2; i += 1) {
         let rndIndex = Math.floor(Math.random() * colors.length);
         cardColors.push(colors[rndIndex]);
         cardColors.push(colors[rndIndex]);
@@ -90,60 +95,87 @@ function generateRandomColorsArr(count) {
 function createObjects(items) {
     let cardColors = generateRandomColorsArr(items);
 
-    var actualColors = [];
-  
+    var currentCard;
+
     for (var i = 1; i <= items; i += 1) {
         let randomColorIndex = Math.floor(Math.random() * cardColors.length);
-        let currentColor = cardColors[randomColorIndex];
+        let realColor = cardColors[randomColorIndex];
         cardColors.splice(randomColorIndex, 1);
 
-        console.log('ok')
-        var names = [];
+        currentCard = createCard(realColor, i);
 
-        names[i - 1] = "shape" + i;
-        names[i - 1] = new Konva.Rect({
-            x: (120 * i) + 20,
-            y: 30,
-            fill: 'gray',
-            width: 100,
-            height: 180,
-            id: i
-        });
-        layer.add(names[i - 1]);
-        actualColors.push(currentColor);
+        actualColors.push(realColor);
+
+        layer.add(currentCard);
+
     }
 
+    stage.add(layer);
 
 
- 
 
-    layer.on("click tap", function (evt) {
-       var shapes = stage.find('Rect');
-        
-        // if card is flipped face-down
-        if(evt.target.fill() === 'gray') {           
-            evt.target.fill(actualColors[evt.target.id() - 1]);            
+
+
+    setTimeout(function () {
+
+        layer.destroy();
+
+        for (var i = 1; i <= items; i += 1) {
+
+            currentCard = createCard('gray', i);
+
+            layer.add(currentCard);
         }
-      
-        writeMessage('Selected card is ' + evt.target.fill() + " with ID " + evt.target.id());
-        
-        storeCards(evt);
-        if (isSecond()) {
-            
-            if (checkSameType(cards) && !checkIfFlipped(cards)) {
-                destroy(cards);
-            }
-            else{
-              shapes.each(function(shape){
-                  shape.fill('gray');
-              });
-            }
-            cards = [];
-        }
-       
-        //removeCards(evt.target);
+        layer.add(text);
+        stage.add(layer);
 
-    });
+        startTimer = new Date();
+
+
+
+
+        layer.on("click tap", function (evt) {
+            var shapes = stage.find('Rect');
+
+            // if card is flipped face-down
+            if (evt.target.fill() === 'gray') {
+                evt.target.fill(actualColors[evt.target.id() - 1]);
+            }
+
+            writeMessage('Selected card is ' + evt.target.fill() + " with ID " + evt.target.id());
+
+            storeCards(evt);
+            if (isSecond()) {
+
+                if (checkSameType(cards) && !checkIfFlipped(cards)) {
+
+                    if (shapes.length === 2) {
+                        let currentTime = new Date();
+                        let endTimerInSeconds = (currentTime - startTimer) / 1000;
+                        let timeToComplete = Math.round(endTimerInSeconds * 100) / 100;
+
+                        writeMessage('Needed time: ' + timeToComplete + 'seconds');
+                    }
+
+
+
+                    destroy(cards);
+                }
+                else {
+                    shapes.each(function (shape) {
+                        shape.fill('gray');
+                    });
+                }
+                cards = [];
+            }
+
+            //removeCards(evt.target);
+
+        });
+
+
+    }, 1000);
+
 
 
     //write message function
@@ -158,7 +190,7 @@ function createObjects(items) {
 
         if (firstCardColor === secondCardColor) {
             return true;
-        }        
+        }
     }
 
     //switches every even click on a different card
@@ -203,9 +235,16 @@ function createObjects(items) {
         return this;
     }
 
+}
 
-
-
-    layer.add(text);
-    stage.add(layer);
+function createCard(color, id) {
+    let card = new Konva.Rect({
+        x: (120 * id) + 20,
+        y: 30,
+        fill: color,
+        width: 100,
+        height: 180,
+        id: id
+    });
+    return card;
 }
