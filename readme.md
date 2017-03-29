@@ -34,7 +34,7 @@ Please define and implement the following assets in your project:
     -  [x] Or a SVG framework like `Raphael JS` or other
 -   Create animations
     -  [ ] Either for the canvas, SVG or both
--  [ ] The application must work in the latest versions of the browsers: 
+-  [x] The application must work in the latest versions of the browsers: 
     -   Google Chrome
     -   Mozilla Firefox
     -   Microsoft Edge/Internet Explorer 11
