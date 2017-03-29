@@ -91,9 +91,6 @@ function createObjects(items) {
         console.log('ok')
         var names = [];
 
-        var someImg = document.createElement('img');
-        someImg.src = "card.jpg";
-
         names[i - 1] = "shape" + i;
         names[i - 1] = new Konva.Rect({
             x: (120 * i) + 20,
