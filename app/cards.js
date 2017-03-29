@@ -1,4 +1,3 @@
-
 var stage = new Konva.Stage({
     container: 'canvas',
     width: 1600,
@@ -15,10 +14,10 @@ var text = new Konva.Text({
     fill: 'black'
 });
 
-var colors = ["pink", "yellow", "green", "orange", "blue","red"]
+var colors = ["pink", "yellow", "green", "orange", "blue", "red"];
 
 function getRandomColor() {
-    var availableColors = colors.length-1;
+    var availableColors = colors.length - 1;
     return colors[Math.round(Math.random() * availableColors)];
 }
 
@@ -26,33 +25,33 @@ function getRandomColor() {
 //* EASY NORMAL HARD difficulty
 var items = 0;
 
-$(document).ready(function(){
+$(document).ready(function () {
     var $easy = $('.easy');
     var $normal = $('.normal');
     var $hard = $('.hard');
 
     var clicked = false;
 
-//* TO DO: change ITEMS values for final version
+    //* TO DO: change ITEMS values for final version
 
-    $easy.click(function(){
-        if (clicked === false){
+    $easy.click(function () {
+        if (clicked === false) {
             items = 4;
             console.log(items);
             createObjects(items);
             clicked = true;
         }
     });
-    $normal.click(function(){
-        if (clicked === false){
+    $normal.click(function () {
+        if (clicked === false) {
             items = 6;
             console.log(items);
             createObjects(items);
             clicked = true;
         }
     });
-    $hard.click(function(){
-        if (clicked === false){
+    $hard.click(function () {
+        if (clicked === false) {
             items = 8;
             console.log(items);
             createObjects(items);
@@ -65,37 +64,58 @@ $(document).ready(function(){
 //* > everything was added to a function */
 
 
-function createObjects(items){
+function generateRandomColorsArr(count) {
+    let cardColors = [];
+
+    for(let i = 0; i < count / 2; i += 1) {
+        let rndIndex = Math.floor(Math.random() * colors.length);
+        cardColors.push(colors[rndIndex]);
+        cardColors.push(colors[rndIndex]);
+    }
+
+    // console.log(cardColors);
+
+    return cardColors;
+}
+
+function createObjects(items) {
+    let cardColors = generateRandomColorsArr(items);
+  
     for (var i = 1; i <= items; i += 1) {
+        let randomColorIndex = Math.floor(Math.random() * cardColors.length);
+        let currentColor = cardColors[randomColorIndex];
+        cardColors.splice(randomColorIndex, 1);
+
         console.log('ok')
-    var names = []
-    names[i-1] = "shape" + i;
-     names[i-1] = new Konva.Rect({
-        x: (120 * i) + 20,
-        y: 30,
-        fill: getRandomColor(),
-        width: 100,
-        height: 180,
-        id: i
+        var names = [];
+
+        names[i - 1] = "shape" + i;
+        names[i - 1] = new Konva.Rect({
+            x: (120 * i) + 20,
+            y: 30,
+            fill: currentColor,
+            width: 100,
+            height: 180,
+            id: i
         });
-    layer.add(names[i-1]);
+        layer.add(names[i - 1]);
     }
     layer.on("click tap", function (evt) {
 
-    //alert(evt.target.getId())
-    writeMessage('Selected card is ' + evt.target.fill() + " with ID " + evt.target.id());
+        //alert(evt.target.getId())
+        writeMessage('Selected card is ' + evt.target.fill() + " with ID " + evt.target.id());
 
 
-    storeCards(evt);
-    if (isSecond()) {
-        // alert(cards[0].target.getId() + ' ' + cards[1].target.getId());
-        if (checkSameType(cards) && !checkIfFlipped(cards)) {
-            destroy(cards)
+        storeCards(evt);
+        if (isSecond()) {
+            // alert(cards[0].target.getId() + ' ' + cards[1].target.getId());
+            if (checkSameType(cards) && !checkIfFlipped(cards)) {
+                destroy(cards)
+            }
+            cards = [];
         }
-        cards = [];
-    }
 
-    //removeCards(evt.target);
+        //removeCards(evt.target);
 
     });
 
@@ -123,8 +143,7 @@ function createObjects(items){
         return function () {
             if (called === true) {
                 called = false;
-            }
-            else {
+            } else {
                 called = true;
             }
             return called;
@@ -134,6 +153,7 @@ function createObjects(items){
 
     //function to store two cards
     var cards = [];
+
     function storeCards(card) {
         cards.push(card);
 
@@ -165,9 +185,3 @@ function createObjects(items){
     layer.add(text);
     stage.add(layer);
 }
-
-
-
-
-
-
