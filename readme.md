@@ -3,6 +3,8 @@
 ## rawgit link: https://rawgit.com/flashd2n/black-russian/master/app/cards.html
 ### framework: https://konvajs.github.io/
 
+### YouTube link: https://www.youtube.com/watch?v=Dj-_8DYE5BQ
+
 ##   JavaScript DOM & UI: Teamwork Assignment
 
 This document describes the teamwork assignment for Telerik Academy students in JavaScript UI & DOM course
