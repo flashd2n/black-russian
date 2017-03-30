@@ -5,13 +5,16 @@ function startGame() {
     let startTimer = new Date();
 
     layer.on('mouseover', function(event) {
-        event.target.tween.play();
+        if (event.target.tween !== undefined) {
+            event.target.tween.play();
+        }
 
     });
 
     layer.on('mouseout', function(event) {
-
-        event.target.tween.reverse();
+        if (event.target.tween !== undefined) {
+            event.target.tween.reverse();
+        }
 
     });
 
