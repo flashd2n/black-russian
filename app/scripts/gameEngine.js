@@ -4,20 +4,20 @@ function startGame() {
 
     let startTimer = new Date();
 
-    layer.on('mouseover', function (event) {
+    layer.on('mouseover', function(event) {
 
         event.target.tween.play();
 
     });
 
-    layer.on('mouseout', function (event) {
+    layer.on('mouseout', function(event) {
 
         event.target.tween.reverse();
 
     });
 
 
-    layer.on('click tap', function (evt) {
+    layer.on('click tap', function(evt) {
         const shapes = stage.find('Rect');
 
         // if card is flipped face-down
@@ -39,9 +39,8 @@ function startGame() {
                 }
 
                 destroy(cards);
-            }
-            else {
-                shapes.each(function (shape) {
+            } else {
+                shapes.each(function(shape) {
                     shape.fill('gray');
                 });
             }
@@ -60,6 +59,7 @@ function gameEnd(startTimer) {
     let timeToComplete = Math.round(endTimerInSeconds * 100) / 100;
 
     writeMessage('Time: ' + timeToComplete + 'seconds');
+
+    //$(document).ready(Begin());
+    //startGame();
 }
-
-

@@ -1,5 +1,6 @@
 'use strict';
 
+
 const stage = new Konva.Stage({
     container: 'canvas',
     width: 1600,
@@ -27,14 +28,16 @@ let xOffset = 0;
 
 const colorsWhichAreSelected = [];
 
-$(document).ready(function () {
+$(document).ready(Begin());
+
+function Begin() {
     const $easy = $('.easy');
     const $normal = $('.normal');
     const $hard = $('.hard');
 
     let clicked = false;
 
-    $easy.click(function () {
+    $easy.click(function() {
         if (clicked === false) {
             let items = 16;
             let cardColors = generateRandomColorsArr(items);
@@ -42,7 +45,7 @@ $(document).ready(function () {
             clicked = true;
         }
     });
-    $normal.click(function () {
+    $normal.click(function() {
         if (clicked === false) {
             let items = 42;
             let cardColors = generateRandomColorsArr(items);
@@ -50,7 +53,7 @@ $(document).ready(function () {
             clicked = true;
         }
     });
-    $hard.click(function () {
+    $hard.click(function() {
         if (clicked === false) {
             let items = 84;
             let cardColors = generateRandomColorsArr(items);
@@ -58,7 +61,7 @@ $(document).ready(function () {
             clicked = true;
         }
     });
-});
+}
 
 function initiateField(items, cardColors) {
 
@@ -83,11 +86,12 @@ function initiateField(items, cardColors) {
         layer.add(currentCard);
 
         actualColors.push(realColor);
+        console.log(actualColors);
     }
 
     stage.add(layer);
 
-    setTimeout(function () {
+    setTimeout(function() {
 
         layer.destroy();
 
