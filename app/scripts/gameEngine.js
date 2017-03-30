@@ -5,7 +5,6 @@ function startGame() {
     let startTimer = new Date();
 
     layer.on('mouseover', function(event) {
-
         event.target.tween.play();
 
     });
@@ -33,12 +32,11 @@ function startGame() {
             if (checkSameType(cards) && !checkIfFlipped(cards)) {
 
                 if (shapes.length === 2) {
-
                     gameEnd(startTimer);
-
                 }
 
                 destroy(cards);
+
             } else {
                 shapes.each(function(shape) {
                     shape.fill('gray');
@@ -57,9 +55,9 @@ function gameEnd(startTimer) {
     let currentTime = new Date();
     let endTimerInSeconds = (currentTime - startTimer) / 1000;
     let timeToComplete = Math.round(endTimerInSeconds * 100) / 100;
-
+    console.log(timeToComplete);
     writeMessage('Time: ' + timeToComplete + 'seconds');
 
-    //$(document).ready(Begin());
-    //startGame();
+    Begin();
+    startGame();
 }

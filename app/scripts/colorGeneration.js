@@ -5,8 +5,7 @@ function getRandomColor() {
     let currentColor = colors[Math.round(Math.random() * availableColors)];
     if (colorsWhichAreSelected.indexOf(currentColor) < 0) {
         colorsWhichAreSelected.push(currentColor);
-    }
-    else {
+    } else {
         colors.splice(colors.indexOf(currentColor));
     }
     return currentColor;
@@ -22,6 +21,5 @@ function generateRandomColorsArr(count) {
         cardColors.push(colors[rndIndex]);
         cardColors.push(colors[rndIndex]);
     }
-
     return cardColors;
 }

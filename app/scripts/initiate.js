@@ -22,12 +22,13 @@ const cards = [];
 
 const colors = ['pink', 'yellow', 'green', 'orange', 'blue', 'red'];
 
-const actualColors = [];
+var actualColors = [];
 
 let xOffset = 0;
 
 const colorsWhichAreSelected = [];
 
+//Beggining
 $(document).ready(Begin());
 
 function Begin() {
@@ -64,9 +65,9 @@ function Begin() {
 }
 
 function initiateField(items, cardColors) {
-
     let rows = 0;
     xOffset = 0;
+    actualColors = [];
 
     let currentCard;
 
@@ -86,12 +87,10 @@ function initiateField(items, cardColors) {
         layer.add(currentCard);
 
         actualColors.push(realColor);
-        console.log(actualColors);
     }
-
     stage.add(layer);
 
-    setTimeout(function() {
+    setTimeout(function CardsCreation() {
 
         layer.destroy();
 
@@ -118,7 +117,6 @@ function initiateField(items, cardColors) {
 }
 
 function createCard(color, id, rows) {
-
     if (id % 10 === 0) {
         xOffset = 0;
     }
@@ -141,7 +139,6 @@ function createCard(color, id, rows) {
 }
 
 function generateAnimation(card) {
-
     let animation = new Konva.Tween({
         node: card,
         scaleX: 1.2,
