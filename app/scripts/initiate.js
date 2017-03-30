@@ -32,6 +32,9 @@ const colorsWhichAreSelected = [];
 $(document).ready(Begin());
 
 function Begin() {
+    const countOfCardsInEasyDifficulty = 16;
+    const countOfCardsInMediumDifficulty = 42;
+    const countOfCardsInHardDifficulty = 84;
     const $easy = $('.easy');
     const $normal = $('.normal');
     const $hard = $('.hard');
@@ -39,30 +42,38 @@ function Begin() {
     let clicked = false;
 
     $easy.click(function() {
-        if (clicked === false) {
-            let items = 16;
+        if (!clicked) {
+            let items = countOfCardsInEasyDifficulty;
             let cardColors = generateRandomColorsArr(items);
-            initiateField(16, cardColors);
+            initiateField(countOfCardsInEasyDifficulty, cardColors);
             clicked = true;
         }
     });
     $normal.click(function() {
-        if (clicked === false) {
-            let items = 42;
+        if (!clicked) {
+            let items = countOfCardsInMediumDifficulty;
             let cardColors = generateRandomColorsArr(items);
-            initiateField(42, cardColors);
+            initiateField(countOfCardsInMediumDifficulty, cardColors);
             clicked = true;
         }
     });
     $hard.click(function() {
-        if (clicked === false) {
-            let items = 84;
+        if (!clicked) {
+            let items = countOfCardsInHardDifficulty;
             let cardColors = generateRandomColorsArr(items);
-            initiateField(84, cardColors);
+            initiateField(countOfCardsInHardDifficulty, cardColors);
             clicked = true;
         }
     });
 }
+
+/*function chooseDifficulty(items) {
+    if (!clicked) {
+        let cardColors = generateRandomColorsArr(items);
+        initiateField(84, cardColors);
+        clicked = true;
+    }
+}*/
 
 function initiateField(items, cardColors) {
     let rows = 0;
