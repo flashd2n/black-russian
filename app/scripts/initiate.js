@@ -1,0 +1,152 @@
+'use strict';
+
+const stage = new Konva.Stage({
+    container: 'canvas',
+    width: 1600,
+    height: 2000
+});
+
+const layer = new Konva.Layer();
+
+const text = new Konva.Text({
+    x: 10,
+    y: 10,
+    fontFamily: 'Calibri',
+    fontSize: 20,
+    text: '',
+    fill: 'black'
+});
+
+const cards = [];
+
+const colors = ['pink', 'yellow', 'green', 'orange', 'blue', 'red'];
+
+const actualColors = [];
+
+let xOffset = 0;
+
+const colorsWhichAreSelected = [];
+
+$(document).ready(function () {
+    const $easy = $('.easy');
+    const $normal = $('.normal');
+    const $hard = $('.hard');
+
+    let clicked = false;
+
+    $easy.click(function () {
+        if (clicked === false) {
+            let items = 16;
+            let cardColors = generateRandomColorsArr(items);
+            initiateField(16, cardColors);
+            clicked = true;
+        }
+    });
+    $normal.click(function () {
+        if (clicked === false) {
+            let items = 42;
+            let cardColors = generateRandomColorsArr(items);
+            initiateField(42, cardColors);
+            clicked = true;
+        }
+    });
+    $hard.click(function () {
+        if (clicked === false) {
+            let items = 84;
+            let cardColors = generateRandomColorsArr(items);
+            initiateField(84, cardColors);
+            clicked = true;
+        }
+    });
+});
+
+function initiateField(items, cardColors) {
+
+    let rows = 0;
+    xOffset = 0;
+
+    let currentCard;
+
+    for (var i = 0; i < items; i += 1) {
+
+        let randomColorIndex = Math.floor(Math.random() * cardColors.length);
+
+        let realColor = cardColors[randomColorIndex];
+        cardColors.splice(randomColorIndex, 1);
+
+
+        if (i % 10 === 0 && i !== 0) {
+            ++rows;
+        }
+
+        currentCard = createCard(realColor, i, rows);
+        layer.add(currentCard);
+
+        actualColors.push(realColor);
+    }
+
+    stage.add(layer);
+
+    setTimeout(function () {
+
+        layer.destroy();
+
+        let rows = 0;
+        xOffset = 0;
+
+        for (var i = 0; i < items; i += 1) {
+
+            if (i % 10 === 0 && i !== 0) {
+                ++rows;
+            }
+
+            currentCard = createCard('gray', i, rows);
+            layer.add(currentCard);
+            currentCard.tween = generateAnimation(currentCard);
+        }
+
+        layer.add(text);
+        stage.add(layer);
+
+        startGame();
+
+    }, 1000);
+}
+
+function createCard(color, id, rows) {
+
+    if (id % 10 === 0) {
+        xOffset = 0;
+    }
+
+    let cardY = 30 + (210 * rows);
+    let cardX = (120 * xOffset) + 20;
+
+    let card = new Konva.Rect({
+        x: cardX,
+        y: cardY,
+        fill: color,
+        width: 100,
+        height: 180,
+        id: id
+    });
+
+    ++xOffset;
+
+    return card;
+}
+
+function generateAnimation(card) {
+
+    let animation = new Konva.Tween({
+        node: card,
+        scaleX: 1.2,
+        scaleY: 1.2,
+        x: card.attrs.x - 10,
+        y: card.attrs.y - 10,
+        easing: Konva.Easings.EaseIn,
+        duration: 0.2
+    });
+
+    return animation;
+}

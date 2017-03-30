@@ -33,7 +33,7 @@ Please define and implement the following assets in your project:
 -   Use SVG
     -  [x] Or a SVG framework like `Raphael JS` or other
 -   Create animations
-    -  [ ] Either for the canvas, SVG or both
+    -  [x] Either for the canvas, SVG or both
 -  [x] The application must work in the latest versions of the browsers: 
     -   Google Chrome
     -   Mozilla Firefox
@@ -45,11 +45,11 @@ Please define and implement the following assets in your project:
 
 Follow the best practices for producing high-quality code: 
 
-- [ ]  **Correct naming**
--  [ ] **Data encapsulation**
-    - [ ]  Use modules
--  [ ] Use ES 2015 syntax where possible
--  [ ] **Strong cohesion** and **loose coupling**
+- [x]  **Correct naming**
+-  [x] **Data encapsulation**
+    - [x]  Use modules
+-  [x] Use ES 2015 syntax where possible
+-  [x] **Strong cohesion** and **loose coupling**
 - [x]  Use **GIT** as a source control system
     -   Host it on <a href="https://github.com" title="https://github.com" target="_blank">https://github.com</a>
 
@@ -57,7 +57,7 @@ Follow the best practices for producing high-quality code:
 
 If you have a chance, time and a suitable situation, you might add some of the following to your project:
 
-- [ ]  Use DOM manipulations like native DOM API and/or jQuery
+- [x]  Use DOM manipulations like native DOM API and/or jQuery
 -  [ ] Unit and integration testing
 -  [ ] Backward compatibility (make the application usable on browsers like IE8, IE7 and IE6)
 
